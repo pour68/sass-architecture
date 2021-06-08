@@ -1,0 +1,144 @@
+exercises:
+
+Sass is stands for:
+
+history:
+
+---
+
+definition:
+
+sass is superset of css.
+
+---
+
+tools:
+
+vscode
+live sass compiler (vscode extension)
+
+settings >
+
+"liveSassCompile.settings.formats": [
+ {
+  "format": "compressed",
+  "extensionName": ".min.css",
+  "savePath": "/css/"
+ }
+]
+
+---
+
+functionalities:
+
+partial _<name>.
+variables (resuable - changable)
+nesting (create visual hirarchy based on html elements)
+make decisions
+loops
+*inheritance (reading)
+function (make code smart) - build-in
+mixin (make code resuable)
+collection (list - map)
+
+---
+
+folder structures:
+
+abstracts >
+
+_mixin.scss - _function.scss - _collection.scss
+
+base
+
+_reset.scss - _typography.scss - _color.scss
+
+layout
+
+_nav.scss - _footer.scss
+
+components
+
+_button.scss - _alert.scss - _tag.scss
+
+pages
+
+_home.scss - about.scss - contact.scss
+
+utils
+
+_padding.scss - _margin.scss - _round.scss - _container.scss
+
+themes
+
+_dark.scss - _grey.scss
+
+---
+
+variables:
+
+$white-color: #fff;
+$dark-color: #333
+
+---
+
+nesting:
+
+nav {
+ &__list {
+  ...
+ }
+
+ &__link {
+  ...
+
+  &:hover {
+
+  }
+ }
+}
+
+---
+
+list and map:
+
+$spaces: (1,2,3,4,5)
+$font-sizes: ("h1":2.5, "h2": 2, "h3": 1.5)
+
+@each $space in $spaces {
+ .my-#{$space} {
+  margin: #{$space}rem 0;
+ }
+ ...
+}
+
+@each $key, $value in $font-sizes {
+ #{$key} {
+  font-size: #{$value}rem;
+ }
+}
+
+---
+
+mixin:
+
+@mixin set-background($bg-color) {
+ background-color: $bg-color;
+ color: set-color($bg-color);
+}
+
+.bg-dark {
+  @include set-background($dark-color);
+}
+
+---
+
+function:
+
+@function set-color($bg-color) {
+ @if lighness($bg-color) > 70 {
+  @return #000;
+ } @else {
+  @return #fff;
+ }
+}
